@@ -71,7 +71,7 @@
     <aside class="w-72 sidebar-gradient text-white flex flex-col sticky top-0 h-screen shadow-2xl">
         <div class="p-8 text-center border-b border-slate-700">
             <h1 class="text-xl font-extrabold tracking-tight italic">💰 CALCULADORA</h1>
-            <p class="text-blue-400 text-[10px] font-bold uppercase mt-1 tracking-widest text-center">Devolução &amp; Descontos</p>
+            <p class="text-blue-400 text-[10px] font-bold uppercase mt-1 tracking-widest text-center">Devolução & Descontos</p>
         </div>
 
         <nav class="flex-1 p-4 space-y-2">
@@ -298,19 +298,10 @@
         function copy(id) {
             const text = document.getElementById(id).innerText;
             const val = text.replace(/R\$\s?/, '').trim();
-            const t = document.getElementById('toast');
-            const showToast = () => { t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2000); };
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(val).then(showToast).catch(() => {
-                    const el = document.createElement('input'); el.value = val; document.body.appendChild(el); el.select();
-                    document.execCommand('copy'); document.body.removeChild(el);
-                    showToast();
-                });
-            } else {
-                const el = document.createElement('input'); el.value = val; document.body.appendChild(el); el.select();
-                document.execCommand('copy'); document.body.removeChild(el);
-                showToast();
-            }
+            const el = document.createElement('input'); el.value = val; document.body.appendChild(el); el.select();
+            document.execCommand('copy'); document.body.removeChild(el);
+            const t = document.getElementById('toast'); t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 2000);
         }
 
         function calcNFD() {
